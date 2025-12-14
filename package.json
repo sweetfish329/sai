@@ -6,7 +6,7 @@
   "keywords": [],
   "license": "ISC",
   "scripts": {
-    "build": "bun run build:frontend && go build -o sai-server cmd/server/main.go",
+    "build": "bun run build:frontend",
     "build:frontend": "cd frontend && bun install && bun run build",
     "test": "go test ./...",
     "dev": "go run cmd/server/main.go",
