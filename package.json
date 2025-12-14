@@ -1,0 +1,37 @@
+{
+  "name": "sai",
+  "version": "1.0.0",
+  "description": "囲碁 AI コーチングアプリケーション。Hono.js と Mastra を活用し、あなたの棋譜から上達のためのヒントを提供します。",
+  "main": "index.js",
+  "bin": {
+    "sai-mcp": "./dist/mcp-server.js"
+  },
+  "scripts": {
+    "build": "npm run build:frontend && tsc",
+    "build:frontend": "cd frontend && npm install && npm run build",
+    "test": "tsx test/sgf_test.ts",
+    "dev": "tsx watch src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@ai-sdk/google": "^2.0.40",
+    "@hono/node-server": "^1.19.6",
+    "@modelcontextprotocol/sdk": "^1.22.0",
+    "@sabaki/go-board": "^1.4.3",
+    "@sabaki/sgf": "^3.4.7",
+    "@types/node": "^24.10.1",
+    "dotenv": "^17.2.3",
+    "google-auth-library": "^10.5.0",
+    "hono": "^4.10.6",
+    "jimp": "^1.6.0",
+    "mastra": "^0.18.3",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
