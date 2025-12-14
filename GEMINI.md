@@ -7,9 +7,11 @@ Hono.js と Mastra を使用した、囲碁の AI コーチングアプリケー
 
 ## 技術スタック
 
-- **Backend/Framework**: Hono.js (serves frontend static files)
-- **Frontend**: React, Material-UI (built to static files)
-- **AI Orchestration**: Mastra
+- **Backend/Framework**: Golang (Echo v4)
+- **Frontend**: React, Material-UI (Vite)
+- **AI Orchestration**: Genkit for Go
+- **Package Manager / Runtime**: Bun (npm prohibited via `only-allow`)
+- **Linter / Formatter**: Biome
 - **Input Format**: SGF (Smart Game Format)
 TypeScriptではNo-Semiスタイルを採用する。
 
@@ -21,14 +23,15 @@ Katrain などで生成された SGF ファイルを読み込み、その内容�
 
 ### 機能要件
 
-1.  **SGF アップロード/入力**: ユーザーが SGF ファイルを提供できるインターフェース。
-2.  **SGF 解析**: SGF ファイルをパースし、棋譜の手順や既存のコメントを抽出。
-3.  **AI 分析・生成**: Mastra を使用して、棋譜データをもとに自然言語での指導・感想コメントを生成。
+1. **SGF アップロード/入力**: ユーザーが SGF ファイルを提供できるインターフェース。
+2. **SGF 解析**: Go言語によるカスタムパーサー (`internal/sgf`) で棋譜を解析。
+3. **AI 分析・生成**: Genkit for Go を使用して、Google Gemini モデルにより指導・感想コメントを生成。
     - 形勢判断
     - 悪手の指摘と改善案
     - 全体的な総評
-4.  **フィードバック表示**: 生成された指導内容をユーザーに提示。
+    - 盤面画像の生成 (`internal/image` + `fogleman/gg`)
+4. **フィードバック表示**: 生成された指導内容をユーザーに提示。
 
 ### 遵守事項
 
-Mastraの実装は"mastra"MCPを参照し、最新のドキュメントに従う。
+MastraからGenkitへ移行済み。Go言語の標準的なディレクトリ構成 (`cmd`, `internal`) に従う。

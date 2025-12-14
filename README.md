@@ -18,23 +18,29 @@ Katrain などの既存 AI と対局した SGF ファイルをアップロード
 
 ## 技術スタック
 
-- [React](https://react.dev/)
-- [Material-UI](https://mui.com/)
+- **Backend**: Golang (Echo v4), Genkit
+- **Frontend**: React (Vite), Material-UI
+- **Tools**: Bun (Runtime/PackageManager), Biome (Linter/Formatter)
 
 ## セットアップ
+
+### 前提条件
+
+- Go 1.22+
+- Bun 1.1+
 
 1. **依存関係のインストール**:
 
    ```bash
-   npm install
-   cd frontend && npm install && cd ..
+   bun install
+   cd frontend && bun install && cd ..
    ```
 
 2. **Google OAuth の設定**:
 
    - Google Cloud Console でプロジェクトを作成し、OAuth 同意画面を設定します。
    - 「OAuth クライアント ID」を作成します（アプリケーションの種類: ウェブ アプリケーション）。
-   - **承認済みの JavaScript 生成元**に `http://localhost:3000` と `http://localhost:5173` を追加します。
+   - **承認済みの JavaScript 生成元**に `http://localhost:3000` を追加します。
 
 3. **環境変数の設定**:
 
@@ -45,15 +51,16 @@ Katrain などの既存 AI と対局した SGF ファイルをアップロード
    GOOGLE_CLIENT_SECRET=your-google-client-secret
    ```
 
-   `frontend/.env` ファイルは不要になりました（バックエンドから取得するため）。
-
 ## 実行方法
 
-
+### 開発・実行
 
 ```bash
-npm run build
-npm run dev
+bun run dev
+# または
+go run cmd/server/main.go
+# フロントエンドのビルドも含む場合:
+bun run build
 ```
 
 ポート 3000 で起動します。ブラウザで `http://localhost:3000` にアクセスしてください。
@@ -65,32 +72,12 @@ npm run dev
 
 ```bash
 cd frontend
-npm run dev
+bun run dev
 ```
 
 ポート 5173 で起動します。ブラウザで `http://localhost:5173` にアクセスしてください。
+(バックエンドAPIを利用する場合はプロキシ設定またはCORS設定に注意してください)
 
 ### MCP サーバー
 
-このプロジェクトは Model Context Protocol (MCP) サーバーとしても機能します。
-Claude Desktop などの MCP クライアントから直接ツールを利用できます。
-
-#### 設定方法 (Claude Desktop)
-
-`claude_desktop_config.json` に以下を追加してください:
-
-```json
-{
-  "mcpServers": {
-    "sai": {
-      "command": "npx",
-      "args": ["-y", "sai-mcp"],
-      "env": {
-        "OPENAI_API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
-
-※ ローカル開発版を使用する場合は、`command` を `node`、`args` を `["/absolute/path/to/project/dist/mcp-server.js"]` に変更してください。
+(Go移行に伴い、現在MCPサーバー機能は一時的に削除されています)
