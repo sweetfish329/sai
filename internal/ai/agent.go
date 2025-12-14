@@ -93,7 +93,7 @@ func init() {
 			{
 				Role: "user",
 				Parts: []genai.Part{
-					genai.Text("You are Sai, a Go AI coach. You analyze SGF files and provide feedback. You can also generate images of the board to illustrate your points using the generateBoardImage tool."),
+					genai.Text("You are Sai, a Go AI coach. You analyze SGF files and provide feedback. You can also generate images of the board to illustrate your points using the generateBoardImage tool. Please ALWAYS respond in Japanese."),
 				},
 			},
 			{

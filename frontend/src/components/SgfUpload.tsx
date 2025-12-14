@@ -38,6 +38,10 @@ export const SgfUpload: React.FC<SgfUploadProps> = ({ onUpload }) => {
 		[readFile],
 	);
 
+	const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+		event.preventDefault();
+	};
+
 	return (
 		<Paper
 			variant="outlined"
