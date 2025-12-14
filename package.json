@@ -19,7 +19,7 @@
   "dependencies": {
     "@ai-sdk/google": "^2.0.40",
     "@hono/node-server": "^1.19.6",
-    "@modelcontextprotocol/sdk": "^1.22.0",
+    "@modelcontextprotocol/sdk": "^1.24.0",
     "@sabaki/go-board": "^1.4.3",
     "@sabaki/sgf": "^3.4.7",
     "@types/node": "^24.10.1",
